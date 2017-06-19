@@ -1419,7 +1419,7 @@ setrec( octant_t* leaf, double ticksize, void* data )
         lat_point= get_lat( y_m , x_m);
         lon_point= get_lon( y_m,  x_m);
         fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
-        depth_point= z_m;
+        depth_point= -1.0* z_m;
          
         // double lat_point=-43.231028;
         // double lon_point=172.201352;
@@ -7520,7 +7520,7 @@ mesh_correct_properties( etree_t* cvm )
                     lat_point= get_lat( east_m , north_m);
                     lon_point= get_lon( east_m,  north_m);
                     //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
-                    depth_point= depth_m;
+                    depth_point= -1.0 * depth_m;
 
                     qualities_vector *QUALITIES_VECTOR;
                     QUALITIES_VECTOR = malloc(sizeof(qualities_vector));
