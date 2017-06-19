@@ -1,0 +1,262 @@
+# ----------------------------------------------------------------------------
+#
+# parameters.in
+#
+# ----------------------------------------------------------------------------
+    
+# ----------------------------------------------------------------------------
+
+simulation_wave_max_freq_hz    = 0.25
+simulation_start_time_sec      =0
+simulation_end_time_sec        =20
+simulation_delta_time_sec      =0.009
+simulation_node_per_wavelength =8
+simulation_shear_velocity_min  =2000
+
+# ----------------------------------------------------------------------------
+
+#cvmdb_input_file      = velocity.model/glab-small.e
+cvmdb_input_file      = profile
+
+# ----------------------------------------------------------------------------
+
+type_of_damping                = none
+#rayleigh
+#bkt
+
+# ----------------------------------------------------------------------------
+
+# Output Stations (observation points)
+
+number_output_stations         = 2
+output_stations_print_rate     = 1
+print_station_velocities       = yes
+print_station_accelerations    = yes
+output_stations_directory      = outputfiles/stations
+
+#       latitude       longitude               depth
+# ............................................................................
+
+output_stations                =
+
+	33.4973		72.6290		0.00
+	34.9900		72.7180		0.00
+
+
+
+
+
+
+# ****************************************************************************
+# ****************************************************************************
+#
+#                DO NOT CHANGE ANYTHING BEYOND THIS POINT
+#
+# ****************************************************************************
+# ****************************************************************************
+
+monitor_file                   = outputfiles/monitor.txt
+planes_input_file              = inputfiles/parameters.in
+mesh_etree_output_file         = outputfiles/mesh.e
+4D_output_file                 = outputfiles/disp.out
+
+# ----------------------------------------------------------------------------
+
+print_matrix_k                 = no
+
+# ----------------------------------------------------------------------------
+
+# comment if want it to be 100e6
+# forces_buffer_size            = 1000000000
+
+# uncommment if want to activate solver barriers
+# enable_timing_barriers        = 1
+
+softening_factor               = 4
+use_progressive_meshing        = 0
+
+# ----------------------------------------------------------------------------
+
+simulation_velocity_profile_freq_hz = 0
+use_infinite_qk                = yes
+
+# ----------------------------------------------------------------------------
+
+region_origin_latitude_deg     =   34.12054900
+region_origin_longitude_deg    = -119.28884200
+region_depth_shallow_m         =    0.00000000
+
+region_length_east_m           = 180000.0
+region_length_north_m          = 135000.0
+region_depth_deep_m            =  61875.0
+
+# ----------------------------------------------------------------------------
+
+# Set to 1 if the results are needed. 0, otherwise.
+
+output_mesh                    = 0
+output_displacement            = 0
+output_velocity                = 0
+output_parallel                = 0
+simulation_output_rate         = 1
+
+output_displacement_file       = disp.h4d
+output_velocity_file           = vel.h4d
+output_stats_file              = output-stats.txt
+
+simulation_displacement_out    = t
+0
+simulation_velocity_out        = 0
+simulation_output_rate         = 0
+
+# ----------------------------------------------------------------------------
+
+region_azimuth_leftface_deg    = 0
+source_directory               = inputfiles/sourcefiles
+source_directory_output        = outputfiles/srctmp
+
+# ----------------------------------------------------------------------------
+
+mesh_coordinates_for_matlab    = no
+mesh_coordinates_directory_for_matlab  = outputfiles/matlabmesh
+
+mesh_corners_matlab            =
+
+    00000  00000  00000  00000  00000  00000
+#   -----  -----  -----  -----  -----  -----
+#   min_x  min_y  max_x  max_y  min_z  max_z
+
+# ----------------------------------------------------------------------------
+
+stiffness_calculation_method   = effective
+
+# ----------------------------------------------------------------------------
+
+the_threshold_damping          = 0.05
+the_threshold_Vp_over_Vs       = 3.0
+do_damping_statistics          = 0
+
+# ----------------------------------------------------------------------------
+
+# Checkpointing parameters
+# use_checkpoint 0 - no or 1 -yes
+# rate is in steps, if 0 do not write
+
+use_checkpoint                 = 0
+checkpointing_rate             = 0
+checkpoint_path                = outputfiles/checkpoints
+
+# ----------------------------------------------------------------------------
+
+include_nonlinear_analysis     = no
+
+geostatic_loading_time_sec     = 0
+geostatic_cushion_time_sec     = 0
+
+nonlinear_shear_velocity_cut   = 0
+
+material_model                 = linear
+material_properties_type       = alphakay
+material_properties_count      = 0
+material_properties_list       =
+
+     000        000        000          000          0.00
+# ------   --------   --------   ----------   -----------
+#     Vs      alpha        kay   strainrate   sensitivity : alphakay     <
+#     Vs   cohesion        phi                            : cohefriction
+
+# ----------------------------------------------------------------------------
+
+include_buildings              = no
+
+number_of_buildings            = 0
+min_octant_size_m              = 0
+surface_shift_m                = 0
+buildings_n_factor             = 0
+
+consider_fixed_base            = no
+fixedbase_input_dt             = 0.00
+fixedbase_input_dir            = results/3rd-round/00bldgs/stations
+fixedbase_input_sufix          = station
+fixedbase_input_startindex     = 000
+
+building_properties            =
+
+  00000  00000   0000   0000   0.00   00.00  000  000   000    000  000   000
+# -----  -----  -----  -----  -----  ------  ---  ---  ----    ---  ---  ----
+# min_x  max_x  min_y  max_y  depth  height   Vp   Vs   Rho     Vp   Vs   Rho 
+#                                            --------------  ----------------
+#                                            building props  foundation props
+
+# ----------------------------------------------------------------------------
+
+# DRM Information
+
+implement_drm                  = no
+drm_directory                  = outputfiles/drm
+
+which_drm_part                 = part1
+drm_edgesize                   = 0
+
+part1_delta_t                  = 0.0
+drm_print_rate                 = 0
+
+drm_offset_x                   = 0
+drm_offset_y                   = 0
+
+drm_boundary                   =
+
+        0        0        0        0        0
+  -------  -------  -------  -------  -------
+#   min_x    min_y    max_x    max_y    depth
+
+# ----------------------------------------------------------------------------
+
+# Output Plane Information 
+
+number_output_planes           = 0
+output_planes_print_rate       = 10
+output_planes_directory        = outputfiles/planes
+
+domain_surface_corners         =
+
+   72.288842     35.060549
+   75.354016     35.061096
+   75.346030     33.025873
+   72.280976     33.026503
+# ------------   -----------
+#        y-lon         x|lat 
+
+#          0.0           0.0
+#          0.0      135000.0
+#     180000.0      135000.0
+#     180000.0           0.0
+
+output_planes                  = 
+
+    34.120549    -119.288842      0   1000    136   1000    181      0      0 
+
+    34.120549    -119.288842      0   1000    136   1000    181      0      0 
+    34.120549    -119.288842      0    500    271    500    361      0      0 
+    34.120549    -119.288842      0    300    451    300    601      0      0 
+    34.120549    -119.288842      0    200    676    200    901      0      0 
+    34.120549    -119.288842      0    150    901    150   1201      0      0 
+    34.120549    -119.288842      0    100   1351    100   1801      0      0
+    34.120549    -119.288842      0     50   2701     50   3601      0      0 
+# -----------  -------------  -----  -----  -----  -----  -----  -----  -----  
+#       x|lat          y-lon      z     dx     nx     dy     ny   strk     dp
+
+# ----------------------------------------------------------------------------
+
+number_profile_layers = 10
+profile_layers =
+
+0.00	       3500.00000	2000.00000	1800.00000	50.00000	100.00000
+399.00	       3501.00000	2001.00000	1800.00000	78.00000	156.00000
+400.00	       5000.00000	2860.00000	2400.00000	106.00000	212.00000
+1399.00	       5001.00000	2861.00000	2400.00000	121.25000	242.50000
+1400.00	       5200.00000	2970.00000	2600.00000	123.75000	247.50000
+1639.00	       5201.00000	2970.00000	2600.00000	126.25000	252.50000
+1640.00	       6000.00000	3430.00000	2900.00000	128.75000	257.50000
+46399.00	       6001.00000	3431.00000	2900.000	131.25000	262.50000
+46400.00	       8330.00000	4830.0000	3300.000	133.75000	267.50000

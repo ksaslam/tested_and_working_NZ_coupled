@@ -1,0 +1,47 @@
+###############################################################################
+#                                                                             #
+# source.in:  Source quantities input file to CMU FEM toolchain.              #
+#             Lines start with # are comments. Empty lines are ignored.       #
+#                                                                             #
+###############################################################################
+
+###############################################################################
+#                                                                              
+# FILTER RELATED (ONLY BUTTERWORTH )
+#                                                                              
+###############################################################################
+
+source_is_filtered     = 0.25
+
+threshold_frequency    = .5
+
+number_of_poles        = 6
+
+###############################################################################
+#                                                                              
+# SOURCE DESCRIPTION                                                           
+#                                                                              
+###############################################################################
+
+source_function_type = discrete
+
+number_of_time_windows = 1
+
+time_windows =
+0
+
+type_of_source = srfh
+
+number_of_point_sources = 1
+
+domain_surface_corners =
+
+   -118.0    36.0
+   -117.0    36.0
+   -117.0    35.0
+   -118.0    35.0
+# ------------   -----------
+#        y-lon         x|lat
+
+
+

@@ -1,0 +1,17 @@
+Steps:
+
+
+1) Create/move the XYtoLL file in quake/forward
+
+1 ) change the make file 
+
+
+1)add all the headerfiles:
+Ok?
+
+2)add the load part in the main file :
+Ok?
+
+change the setrec part:
+Ok?
+
