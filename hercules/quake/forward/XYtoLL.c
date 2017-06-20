@@ -12,37 +12,45 @@ double bilinear(double x, double y,
     return f1 + f2 + f3 + f4;
 }
 
-double get_lat(double x, double y) {
+
+double get_lat(double x, double y, double x_north_len, double y_east_len,double lat_lower_left, double lat_lower_right, double lat_upper_left, double lat_upper_right) 
+{
     
     // Latitudes of ShakeOut region corners   # first value is along long (horizental direction 6000) and second value is along lat (3000) 
     return bilinear(x,y,
-            0, 0, 10000, 10000,          
-            -43.80, -43.80, 
-            -43.70, -43.70);
-    // double x_north;
-    // double y_east;
-    // double lat_lower;
-    // double lat_upper;
+            0, 0, x_north_len, y_east_len,          
+            lat_lower_left, lat_lower_right, 
+            lat_upper_left, lat_upper_right);
+
+// double get_lat(double x, double y) {
     
-    // return bilinear(x,y,
-    //         0, 0, x_north, y_east,          
-    //         lat_lower, lat_lower, 
-    //         lat_upper, lat_upper);
+//     // Latitudes of ShakeOut region corners   # first value is along long (horizental direction 6000) and second value is along lat (3000) 
+//     return bilinear(x,y,
+//             0, 0, 10000, 10000,          
+//             -43.80, -43.80, 
+//             -43.70, -43.70);
+
+
 }
 
-double get_lon(double x, double y) {
+double get_lon(double x, double y, double x_north_len, double y_east_len, double lon_lower_left, double lon_lower_right, double lon_upper_left, double lon_upper_right ) {
     
-
+    return bilinear(x,y,
+            0, 0, x_north_len, y_east_len,          
+            lon_lower_left, lon_lower_right, 
+            lon_upper_left, lon_upper_right);
 
     //Longitudes of ShakeOut region corners
     return bilinear(x,y,
             0, 0, 10000, 10000, 
             172.20, 172.30, 
             172.20, 172.30);
-        // double x_north;
-        // double y_east;
-        // double long_east;
+        // double x_north_len;            
+        // double y_east_len;
+        // double long_east_1;
+        // double long_east_2;
         // double long_west;
+        // double long_west_2;
 
 
         // return bilinear(x,y,
@@ -95,10 +103,10 @@ int convert(double x, double y) {
         return 1;
     }
 
-    lat = get_lat(x,y);
-    lon = get_lon(x,y);
+    // lat = get_lat(x,y);
+    // lon = get_lon(x,y);
 
-    printf("%.11lf %.11lf\n",lat,lon);
+    // printf("%.11lf %.11lf\n",lat,lon);
 
     return 0;
 }

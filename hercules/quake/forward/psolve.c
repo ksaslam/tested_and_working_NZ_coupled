@@ -1416,17 +1416,21 @@ setrec( octant_t* leaf, double ticksize, void* data )
         double lat_point; 
         double lon_point; 
         double depth_point;
-        lat_point= get_lat( y_m , x_m);
-        lon_point= get_lon( y_m,  x_m);
+        // lat_point= get_lat( y_m, x_m);
+        // lon_point= get_lon( y_m, x_m);
+       
+        lat_point= get_lat(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
+        lon_point= get_lon(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
+        // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
+        lat_point= -43.00;
+        lon_point = 172.00;
+        // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
+
+        //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
         //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
         depth_point= -1.0* z_m;
          
-        // double lat_point=-43.231028;
-        // double lon_point=172.201352;
-        //double depth_point= -200.0;
-        // lat_point= -43.577199;   
-        // lon_point= 172.748972;      
-        // depth_point= 1.125000; 
+        
         
         qualities_vector *QUALITIES_VECTOR;
         QUALITIES_VECTOR = malloc(sizeof(qualities_vector));
@@ -7517,9 +7521,16 @@ mesh_correct_properties( etree_t* cvm )
                     double lat_point; 
                     double lon_point; 
                     double depth_point;
-                    lat_point= get_lat( east_m , north_m);
-                    lon_point= get_lon( east_m,  north_m);
-                    //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
+                    // lat_point= get_lat( east_m , north_m);
+                    // lon_point= get_lon( east_m,  north_m);
+                    // //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
+                    
+                    lat_point= get_lat(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
+                    lon_point= get_lon(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
+                    // fprintf(stderr, "lat long after conversion, %lf, %lf \n", lat_point,lon_point);
+                    lat_point= -43.00;
+                    lon_point = 172.00;    
+                    
                     depth_point= -1.0 * depth_m;
 
                     qualities_vector *QUALITIES_VECTOR;
@@ -7829,6 +7840,36 @@ int main( int argc, char** argv )
 
 
     loadAllGlobalData(GLOBAL_MODEL_PARAMETERS, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA);
+
+    //  This part is to give coordinates to the XYtoLL.c file
+    //*****************************************************************
+    static const char* fname = __FUNCTION_NAME;
+
+    int    iCorner;
+    double *auxiliar;
+    FILE*  fp;
+
+    /* obtain the stations specifications */
+    if ( (fp = fopen ( Param.parameters_input_file, "r")) == NULL ) {
+    solver_abort (fname, Param.parameters_input_file,
+              "Error opening parametersin configuration file");
+    }
+
+    auxiliar = (double *)malloc(sizeof(double)*8);
+
+    if ( parsedarray( fp, "domain_surface_corners", 8, auxiliar ) != 0) {
+    solver_abort( fname, NULL,
+              "Error parsing domain_surface_corners field from %s\n",
+              Param.parameters_input_file);
+    }
+
+    for ( iCorner = 0; iCorner < 4; iCorner++){
+    Param.theSurfaceCornersLong[ iCorner ] = auxiliar [ iCorner * 2 ];
+    Param.theSurfaceCornersLat [ iCorner ] = auxiliar [ iCorner * 2 +1 ];
+    }
+    free(auxiliar);
+
+    //*******************************************
 
     /* Generate, partition and output unstructured octree mesh */
     mesh_generate();

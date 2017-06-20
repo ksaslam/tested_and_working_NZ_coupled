@@ -1,8 +1,8 @@
 # Solver communication schedule summary:
 #   PE dc_p     dc_n ds_p     ds_n ac_p     ac_n as_p     as_n total_ncnt
-     0    2       16    0        0    3      393    0        0        409
-     1    1       12    1        8    2      173    1      237        430
-     2    1        8    1        8    1      234    2      190        440
-     3    0        0    2       20    0        0    3      373        393
+     0    0        0    0        0    3      153    0        0        153
+     1    0        0    0        0    1       81    1       72        153
+     2    0        0    0        0    1       81    1       72        153
+     3    0        0    0        0    0        0    3      171        171
 
 
