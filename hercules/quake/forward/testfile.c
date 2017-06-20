@@ -106,7 +106,7 @@ void main_function(double x_lat,double y_long, double depth, calculation_log *CA
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "BULLDOZED";
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.MIN_VS = 0.500;
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.COORDINATES_TEXT_FILE = "SecondaryInputFiles/GridpointCoords.txt";
-            fprintf(stderr, "Done with getting the file names of input file\n");
+            //fprintf(stderr, "Done with getting the file names of input file\n");
         }
 
 
@@ -143,14 +143,14 @@ void main_function(double x_lat,double y_long, double depth, calculation_log *CA
     
      if (GENERATE_VELOCITIES_ON_GRID == 1)
     {   
-        printf("Running load data from main.\n");
+       // printf("Running load data from main.\n");
         // lat=lat_point;
         // lon=lon_point;
         // depth=depth_point;
 
-        convert_program (100.0,200.0);
+        
         runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, x_lat,y_long, depth, QUALITIES_VECTOR);
-        printf("Done with the first one.\n");
+        //printf("Done with the first one.\n");
         // lat=-43.00;
         // lon=172.00;
         // depth=-2000;        

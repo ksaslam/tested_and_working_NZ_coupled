@@ -19,16 +19,38 @@ double get_lat(double x, double y) {
             0, 0, 10000, 10000,          
             -43.80, -43.80, 
             -43.70, -43.70);
+    // double x_north;
+    // double y_east;
+    // double lat_lower;
+    // double lat_upper;
+    
+    // return bilinear(x,y,
+    //         0, 0, x_north, y_east,          
+    //         lat_lower, lat_lower, 
+    //         lat_upper, lat_upper);
 }
 
 double get_lon(double x, double y) {
     
-    // Longitudes of ShakeOut region corners
+
+
+    //Longitudes of ShakeOut region corners
     return bilinear(x,y,
             0, 0, 10000, 10000, 
             172.20, 172.30, 
             172.20, 172.30);
+        // double x_north;
+        // double y_east;
+        // double long_east;
+        // double long_west;
+
+
+        // return bilinear(x,y,
+        //     0, 0, x_north, y_east, 
+        //     long_east, long_west, 
+        //     long_east, long_west);
 }
+
 
 int convert(double x, double y) {
     

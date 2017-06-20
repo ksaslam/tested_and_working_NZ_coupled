@@ -1345,7 +1345,7 @@ setrec( octant_t* leaf, double ticksize, void* data )
 
     int res = 0;
     edata_t* edata = (edata_t*)data;
-    fprintf(stderr, "The domain x,y and Z, %lf,%lf, %lf \n", Param.theDomainX, Param.theDomainY, Param.theDomainZ );
+    //fprintf(stderr, "The domain x,y and Z, %lf,%lf, %lf \n", Param.theDomainX, Param.theDomainY, Param.theDomainZ );
     
     points[0] = 0.01;
     points[1] = 1;
@@ -1418,7 +1418,7 @@ setrec( octant_t* leaf, double ticksize, void* data )
         double depth_point;
         lat_point= get_lat( y_m , x_m);
         lon_point= get_lon( y_m,  x_m);
-        fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
+        //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
         depth_point= -1.0* z_m;
          
         // double lat_point=-43.231028;
@@ -1436,9 +1436,9 @@ setrec( octant_t* leaf, double ticksize, void* data )
             exit(EXIT_FAILURE);
         }            
        //fprintf(stderr, "The domain lat,long,depth %lf,%lf, %lf \n", Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
-       fprintf(stderr, "Being called from setrec again, \n"); 
+       // fprintf(stderr, "Being called from setrec again, \n"); 
        main_function(lat_point, lon_point, depth_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, QUALITIES_VECTOR);
-       fprintf(stderr, "These are QUALITIES_VECTOR values, %lf,%lf, %lf \n", QUALITIES_VECTOR->Vp[0]* 1000.0, QUALITIES_VECTOR->Vs[0], QUALITIES_VECTOR->Rho[0] );
+       //fprintf(stderr, "These are QUALITIES_VECTOR values, %lf,%lf, %lf \n", QUALITIES_VECTOR->Vp[0]* 1000.0, QUALITIES_VECTOR->Vs[0], QUALITIES_VECTOR->Rho[0] );
        g_props.Vp  = (float)QUALITIES_VECTOR->Vp[0]* 1000.0;
        g_props.Vs  = (float)QUALITIES_VECTOR->Vs[0]* 1000.0;
        g_props.rho = (float)QUALITIES_VECTOR->Rho[0]* 1000.0;
@@ -7537,7 +7537,7 @@ mesh_correct_properties( etree_t* cvm )
                         g_props.Vs= (float) QUALITIES_VECTOR->Vs[0]* 1000.0;
                         g_props.rho=(float) QUALITIES_VECTOR->Rho[0]* 1000.0;
                         free(QUALITIES_VECTOR);
-                        fprintf(stderr, "Coming from the mesh correct properties = %lf\n", g_props.Vp);
+                        // fprintf(stderr, "Coming from the mesh correct properties = %lf\n", g_props.Vp);
 
 
         

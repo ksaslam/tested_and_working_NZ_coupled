@@ -1,2 +1,1 @@
 Latitude	Longitude	Depth(km)	Vp(km/s)	Vs(km/s)	Rho(t/m^3)
--43.550981 	 172.793953 	 4.996875 	 nan 	 nan 	 nan

@@ -359,14 +359,7 @@ void runGenerateMultipleProfiles(char *MODEL_VERSION, char *OUTPUT_DIR, gen_mult
 
 void runGenerateMultipleVSonGrid(global_model_parameters *GLOBAL_MODEL_PARAMETERS ,velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA,global_surfaces *GLOBAL_SURFACES,basin_data *BASIN_DATA, char *OUTPUT_DIR, gen_extract_multi_gridpoint_vs_call GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, calculation_log *CALCULATION_LOG, double lat, double lon, double depth, qualities_vector *QUALITIES_VECTOR)
 {
-//void runGenerateMultipleVSonGrid(char *MODEL_VERSION, char *OUTPUT_DIR, gen_extract_multi_gridpoint_vs_call GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, calculation_log *CALCULATION_LOG)
-//{
-    // Read in text file with parameters
-//     multi_gridpoint_parameters *MULTI_GRIDPOINT_PARAMETERS;
-// //     printf( "This is total number of points %d\n", &MULTI_GRIDPOINT_PARAMETERS->nPts );
-// // //    MULTI_GRIDPOINT_PARAMETERS = readGridpointsTextFile(GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.COORDINATES_TEXT_FILE);
-   
-//     MULTI_GRIDPOINT_PARAMETERS = initializegrid();
+
     multi_gridpoint_parameters  *MULTI_GRIDPOINT_PARAMETERS;
     MULTI_GRIDPOINT_PARAMETERS = malloc(sizeof(multi_gridpoint_parameters));
     if (MULTI_GRIDPOINT_PARAMETERS == NULL)
@@ -448,10 +441,10 @@ void runGenerateMultipleVSonGrid(global_model_parameters *GLOBAL_MODEL_PARAMETER
         assignQualities(GLOBAL_MODEL_PARAMETERS, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA,
                         MESH_VECTOR, PARTIAL_GLOBAL_SURFACE_DEPTHS, PARTIAL_BASIN_SURFACE_DEPTHS, IN_BASIN,
                         QUALITIES_VECTOR, CALCULATION_LOG, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE);
-        printf("Hello test the grouping loop .\n");
+        //printf("Hello test the grouping loop .\n");
         writeGridpointVelocities(QUALITIES_VECTOR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, MESH_VECTOR, OUTPUT_DIR, CALCULATION_LOG, i);
-        printf( "This is the Vs value as can be seen,  %lf \n", QUALITIES_VECTOR->Vs[0]);
-        printf("Gridpoint lat-lon %i of %i complete.\n", i + 1, MULTI_GRIDPOINT_PARAMETERS->nGroupings);
+        //printf( "This is the Vs value as can be seen,  %lf \n", QUALITIES_VECTOR->Vs[0]);
+        //printf("Gridpoint lat-lon %i of %i complete.\n", i + 1, MULTI_GRIDPOINT_PARAMETERS->nGroupings);
 
 
         free(IN_BASIN);
