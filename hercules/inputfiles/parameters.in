@@ -6,7 +6,7 @@
     
 # ----------------------------------------------------------------------------
 
-simulation_wave_max_freq_hz    =    0.25
+simulation_wave_max_freq_hz    =    0.1
 simulation_start_time_sec      =    0
 simulation_end_time_sec        =  20.0
 simulation_delta_time_sec      =    0.025
@@ -109,9 +109,9 @@ region_origin_latitude_deg     =   34.3
 region_origin_longitude_deg    = -118.7
 region_depth_shallow_m         =    0.00000000
 
-region_length_east_m           = 40000.0
-region_length_north_m          = 40000.0
-region_depth_deep_m            =  20000.0
+region_length_east_m           = 1000.0
+region_length_north_m          = 1000.0
+region_depth_deep_m            =  500.0
 
 # ----------------------------------------------------------------------------
 

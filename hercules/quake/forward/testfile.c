@@ -103,10 +103,10 @@ void main_function(double x_lat,double y_long, double depth, calculation_log *CA
         if (strcmp(CALL_TYPE, "GENERATE_VELOCITIES_ON_GRID") == 0)
         {
             GENERATE_VELOCITIES_ON_GRID = 1;
-            GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "BULLDOZED";
+            GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "SQUASHED";  // we can also use 'BULLDOZED' here
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.MIN_VS = 0.500;
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.COORDINATES_TEXT_FILE = "SecondaryInputFiles/GridpointCoords.txt";
-            //fprintf(stderr, "Done with getting the file names of input file\n");
+            //fprintf(stderr, "The topography type being used %s\n", GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE );
         }
 
 

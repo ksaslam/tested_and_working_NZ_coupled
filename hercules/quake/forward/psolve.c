@@ -1419,11 +1419,14 @@ setrec( octant_t* leaf, double ticksize, void* data )
         // lat_point= get_lat( y_m, x_m);
         // lon_point= get_lon( y_m, x_m);
        
+
+
+
         lat_point= get_lat(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
         lon_point= get_lon(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
         // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
-        lat_point= -43.00;
-        lon_point = 172.00;
+       // lat_point= -43.00;
+       // lon_point = 172.00;
         // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
 
         //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
@@ -1446,6 +1449,7 @@ setrec( octant_t* leaf, double ticksize, void* data )
        g_props.Vp  = (float)QUALITIES_VECTOR->Vp[0]* 1000.0;
        g_props.Vs  = (float)QUALITIES_VECTOR->Vs[0]* 1000.0;
        g_props.rho = (float)QUALITIES_VECTOR->Rho[0]* 1000.0;
+       //fprintf(stderr, "Coming from the setrec  = %lf\n", g_props.Vp);
        free(QUALITIES_VECTOR);
 		if (res != 0) {
 		    continue;
@@ -2267,7 +2271,7 @@ mesh_generate()
 
 #ifdef USECVMDB
     /* Close the material database */
-    etree_close(Global.theCVMEp);
+    // etree_close(Global.theCVMEp);
 #else
     free(Global.theCVMRecord);
 #endif /* USECVMDB */
@@ -7518,6 +7522,8 @@ mesh_correct_properties( etree_t* cvm )
                     //     exit(1);
                     //  }
 
+         
+
                     double lat_point; 
                     double lon_point; 
                     double depth_point;
@@ -7527,10 +7533,9 @@ mesh_correct_properties( etree_t* cvm )
                     
                     lat_point= get_lat(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
                     lon_point= get_lon(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
-                    // fprintf(stderr, "lat long after conversion, %lf, %lf \n", lat_point,lon_point);
-                    lat_point= -43.00;
-                    lon_point = 172.00;    
-                    
+                    // fprintf(stderr, "lat long after conversion, %lf, %lf \n", lat_point,lon_point);   
+                    //lat_point= -43.00;
+                    //lon_point = 172.00;
                     depth_point= -1.0 * depth_m;
 
                     qualities_vector *QUALITIES_VECTOR;
@@ -7548,7 +7553,7 @@ mesh_correct_properties( etree_t* cvm )
                         g_props.Vs= (float) QUALITIES_VECTOR->Vs[0]* 1000.0;
                         g_props.rho=(float) QUALITIES_VECTOR->Rho[0]* 1000.0;
                         free(QUALITIES_VECTOR);
-                        // fprintf(stderr, "Coming from the mesh correct properties = %lf\n", g_props.Vp);
+                        //fprintf(stderr, "Coming from the mesh correct properties = %lf\n", g_props.Vp);
 
 
         
@@ -7775,7 +7780,7 @@ int main( int argc, char** argv )
     read_parameters(argc, argv);
 
     /* Create and open database */
-   open_cvmdb();
+    //open_cvmdb();
 
     /* Initialize nonlinear parameters */
     if ( Param.includeNonlinearAnalysis == YES ) {

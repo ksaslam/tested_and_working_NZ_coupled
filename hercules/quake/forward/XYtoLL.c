@@ -41,10 +41,10 @@ double get_lon(double x, double y, double x_north_len, double y_east_len, double
             lon_upper_left, lon_upper_right);
 
     //Longitudes of ShakeOut region corners
-    return bilinear(x,y,
-            0, 0, 10000, 10000, 
-            172.20, 172.30, 
-            172.20, 172.30);
+    // return bilinear(x,y,
+    //         0, 0, 10000, 10000, 
+    //         172.20, 172.30, 
+    //         172.20, 172.30);
         // double x_north_len;            
         // double y_east_len;
         // double long_east_1;
