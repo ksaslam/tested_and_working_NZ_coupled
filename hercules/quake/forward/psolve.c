@@ -103,6 +103,7 @@ global_surfaces *GLOBAL_SURFACES;
 basin_data *BASIN_DATA;
 calculation_log *CALCULATION_LOG;
 char *MODEL_VERSION;
+global_model_parameters *GLOBAL_MODEL_PARAMETERS;
 
 /*---------------Initialization and cleanup routines----------------------*/
 static void    read_parameters(int argc, char **argv);
@@ -1416,24 +1417,12 @@ setrec( octant_t* leaf, double ticksize, void* data )
         double lat_point; 
         double lon_point; 
         double depth_point;
-        // lat_point= get_lat( y_m, x_m);
-        // lon_point= get_lon( y_m, x_m);
-       
-
 
 
         lat_point= get_lat(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
         lon_point= get_lon(y_m, x_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
-        // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
-       // lat_point= -43.00;
-       // lon_point = 172.00;
-        // fprintf(stderr, "lat long after conversion, %lf, %lf, %lf \n", lat_point,lon_point,z_m);
-
-        //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
-        //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
         depth_point= -1.0* z_m;
          
-        
         
         qualities_vector *QUALITIES_VECTOR;
         QUALITIES_VECTOR = malloc(sizeof(qualities_vector));
@@ -1441,15 +1430,21 @@ setrec( octant_t* leaf, double ticksize, void* data )
         {
             printf("Memory allocation of QUALITIES_VECTOR failed.\n");
             exit(EXIT_FAILURE);
-        }            
+        }
        //fprintf(stderr, "The domain lat,long,depth %lf,%lf, %lf \n", Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
-       // fprintf(stderr, "Being called from setrec again, \n"); 
+ 
        main_function(lat_point, lon_point, depth_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, QUALITIES_VECTOR);
-       //fprintf(stderr, "These are QUALITIES_VECTOR values, %lf,%lf, %lf \n", QUALITIES_VECTOR->Vp[0]* 1000.0, QUALITIES_VECTOR->Vs[0], QUALITIES_VECTOR->Rho[0] );
-       g_props.Vp  = (float)QUALITIES_VECTOR->Vp[0]* 1000.0;
-       g_props.Vs  = (float)QUALITIES_VECTOR->Vs[0]* 1000.0;
-       g_props.rho = (float)QUALITIES_VECTOR->Rho[0]* 1000.0;
-       //fprintf(stderr, "Coming from the setrec  = %lf\n", g_props.Vp);
+        
+        //main_function( lat_point, lon_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA);
+
+       //fprintf(stderr, "These are QUALITIES_VECTOR values, %lf,%lf, %lf \n", QUALITIES_VECTOR->Vp[0], QUALITIES_VECTOR->Vs[0], QUALITIES_VECTOR->Rho[0] );
+       
+       g_props.Vp  = (float) 1000.0 * QUALITIES_VECTOR->Vp[0];
+       g_props.Vs  = (float) 1000.0 * QUALITIES_VECTOR->Vs[0];
+       g_props.rho = (float) 1000.0 * QUALITIES_VECTOR->Rho[0];
+       fprintf(stderr, "*");
+       
+
        free(QUALITIES_VECTOR);
 		if (res != 0) {
 		    continue;
@@ -7437,6 +7432,19 @@ mesh_correct_properties( etree_t* cvm )
     points[0] = 0.005;
     points[1] = 0.5;
     points[2] = 0.995;
+   
+
+    // GENERATE_VELOCITIES_ON_GRID = 1;
+    // gen_extract_multi_gridpoint_vs_call GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL;
+    // char *OUTPUT_DIR;
+    
+    // GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "BULLDOZED";
+    // GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.MIN_VS = 0.500;
+    // GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.COORDINATES_TEXT_FILE = "SecondaryInputFiles/GridpointCoords.txt";
+    // OUTPUT_DIR = "Vs_At_Gridpoints";
+
+    fprintf(stderr, "Coming from mesh correct properties, \n" );
+
 
 //    if (Global.myID == 0) {
 //        fprintf( stdout,"mesh_correct_properties  ... " );
@@ -7527,36 +7535,28 @@ mesh_correct_properties( etree_t* cvm )
                     double lat_point; 
                     double lon_point; 
                     double depth_point;
-                    // lat_point= get_lat( east_m , north_m);
+                    //lat_point= get_lat( east_m , north_m);
                     // lon_point= get_lon( east_m,  north_m);
                     // //fprintf(stderr, "Depth value, %lf, %lf, %lf \n", y_m,x_m,z_m);
                     
                     lat_point= get_lat(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[3], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
                     lon_point= get_lon(east_m , north_m, Param.theDomainX, Param.theDomainY, Param.theSurfaceCornersLong[0], Param.theSurfaceCornersLong[3], Param.theSurfaceCornersLong[1], Param.theSurfaceCornersLong[2] );
-                    // fprintf(stderr, "lat long after conversion, %lf, %lf \n", lat_point,lon_point);   
-                    //lat_point= -43.00;
-                    //lon_point = 172.00;
-                    depth_point= -1.0 * depth_m;
-
+                    depth_point= -1.0* depth_m;  
                     qualities_vector *QUALITIES_VECTOR;
                     QUALITIES_VECTOR = malloc(sizeof(qualities_vector));
-                            if (QUALITIES_VECTOR == NULL) 
-                            {
-                                printf("Memory allocation of QUALITIES_VECTOR failed.\n");
-                                exit(EXIT_FAILURE);
-                            }                        
-                        // double lat_point=-44.00;
-                        // double lon_point=172.00;
-                        // double depth_point= -200.0;                        
-                        main_function(lat_point, lon_point, depth_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, QUALITIES_VECTOR);
-                        g_props.Vp= (float) QUALITIES_VECTOR->Vp[0]* 1000.0;
-                        g_props.Vs= (float) QUALITIES_VECTOR->Vs[0]* 1000.0;
-                        g_props.rho=(float) QUALITIES_VECTOR->Rho[0]* 1000.0;
-                        free(QUALITIES_VECTOR);
-                        //fprintf(stderr, "Coming from the mesh correct properties = %lf\n", g_props.Vp);
+                        if (QUALITIES_VECTOR == NULL) 
+                        {
+                            printf("Memory allocation of QUALITIES_VECTOR failed.\n");
+                            exit(EXIT_FAILURE);
+                        } 
+                    main_function(lat_point, lon_point, depth_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, QUALITIES_VECTOR);
+                    g_props.Vp  = (float) 1000.0 * QUALITIES_VECTOR->Vp[0];
+                    g_props.Vs  = (float) 1000.0 * QUALITIES_VECTOR->Vs[0];
+                    g_props.rho = (float) 1000.0 * QUALITIES_VECTOR->Rho[0];
+                    fprintf(stderr, "lat long after conversion, %lf\n",g_props.Vp);
+                    
+                    free(QUALITIES_VECTOR);                  
 
-
-        
             
         			vp  += g_props.Vp;
         			vs  += g_props.Vs;
@@ -7838,7 +7838,7 @@ int main( int argc, char** argv )
 
     CALCULATION_LOG = malloc(sizeof(calculation_log));
 
-    global_model_parameters *GLOBAL_MODEL_PARAMETERS;
+    
 
     MODEL_VERSION= "1.65";
     GLOBAL_MODEL_PARAMETERS = getGlobalModelParameters(MODEL_VERSION);

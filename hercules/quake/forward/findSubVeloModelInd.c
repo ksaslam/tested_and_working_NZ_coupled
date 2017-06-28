@@ -26,7 +26,9 @@ int findGlobalSubVeloModelInd(double depth, partial_global_surface_depths *PARTI
  Output variables:
     nVeloInd   - the indice of the sub velocity model the point lies within
  */
+
 {
+    printf("depth given to findGlobalSubVeloModelInd %lf.\n", depth);
     int nVeloInd = 1e6; // large value, sub model inds should be <10
     
     for(int j = 0; j < PARTIAL_GLOBAL_SURFACE_DEPTHS->nSurfDep-1; j++)

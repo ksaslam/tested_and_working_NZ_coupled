@@ -117,9 +117,9 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
     int basinFlag = 0;
     double Z = 0;
 
-    // for (int k = 0; k < MESH_VECTOR->nZ; k++)
-    // {
-    int k=0;
+    for (int k = 0; k < MESH_VECTOR->nZ; k++)
+    {
+    //int k=0;
     
         if(strcmp(TOPO_TYPE, "BULLDOZED") == 0)
         {
@@ -150,6 +150,7 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
 
         if (basinFlag == 0)
         {
+            
             // determine which sub velocity model the point lies within
             nVeloModInd = findGlobalSubVeloModelInd(Z, PARTIAL_GLOBAL_SURFACE_DEPTHS);
 
@@ -186,7 +187,7 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
         }
         basinFlag = 0;
 
-    // }
+     }
     if(strcmp(TOPO_TYPE, "BULLDOZED") == 0)
     {
         for (int k = 0; k < MESH_VECTOR->nZ; k++) // write over values if BULLDOZED
