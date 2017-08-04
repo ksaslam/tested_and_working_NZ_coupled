@@ -1,0 +1,225 @@
+Starting psolve $Revision: 1.166 $ on 1 PEs (0 IO Pool PEs).
+
+
+
+---------------- Some Input Data ----------------
+
+Vs cut:                             1000.000000
+Softening factor:                   4.000000
+Number of stations:                 1
+Number of planes:                   0
+Stiffness calculation method:       effective
+Include buildings:                  no
+Include nonlinear analysis:         no
+Printing velocities on stations:    yes
+Printing accelerations on stations: yes
+Mesh Coordinates For Matlab:        no
+cvmdb_input_file:                   inputfiles/velocity.model/glab-small.e
+Implement drm:      	               no
+Include Topography:                 no
+
+-------------------------------------------------
+
+Loading global velocity submodel data.
+Loading NZ Tomography.
+Loaded tomography data.
+Completed loading of global velocity submodel data.
+Completed loading of global surfaces.
+Loading basin data.
+All basin surfaces loaded.
+All basin boundaries loaded.
+All basin sub model data loaded.
+Completed loading basin data.
+All global data loaded.
+Meshing: Conventional
+
+Stage                Min         Max       Total    Time(s)
+
+New tree                                               0.00
+
+Refining          671434      671434      671434     283.67
+Balancing         671434      671434      671434       0.05
+Partitioning      671434      671434      671434       0.00
+
+Extracting the mesh                                    0.00
+Correcting mesh properties                        Coming from mesh correct properties, 
+   258.57
+
+Total elements:                           671434
+Total nodes:                              730153
+Total dangling nodes:                      44892
+
+Maximum leaf level = 9
+Minimum leaf level = 7
+solver_run() start
+Starting time step = 0
+
+Sim = Simulation time (s), Sol = Solver time (s), WC = Wall Clock Time (s)
+**************************************************     Sim=    0.500000     ETA= 280.4    WC= 568.4
+**************************************************     Sim=    1.000000     ETA= 274.5    WC= 575.6
+**************************************************     Sim=    1.500000     ETA= 269.2    WC= 582.9
+**************************************************     Sim=    2.000000     ETA= 264.8    WC= 590.2
+**************************************************     Sim=    2.500000     ETA= 260.0    WC= 597.7
+**************************************************     Sim=    3.000000     ETA= 256.7    WC= 605.2
+**************************************************     Sim=    3.500000     ETA= 252.8    WC= 612.9
+**************************************************     Sim=    4.000000     ETA= 249.7    WC= 620.7
+**************************************************     Sim=    4.500000     ETA= 247.0    WC= 628.6
+**************************************************     Sim=    5.000000     ETA= 244.2    WC= 636.8
+**************************************************     Sim=    5.500000     ETA= 242.4    WC= 645.1
+**************************************************     Sim=    6.000000     ETA= 240.1    WC= 653.7
+**************************************************     Sim=    6.500000     ETA= 237.7    WC= 662.5
+**************************************************     Sim=    7.000000     ETA= 235.4    WC= 671.6
+**************************************************     Sim=    7.500000     ETA= 232.7    WC= 680.9
+**************************************************     Sim=    8.000000     ETA= 229.2    WC= 690.4
+**************************************************     Sim=    8.500000     ETA= 225.3    WC= 700.2
+**************************************************     Sim=    9.000000     ETA= 220.7    WC= 710.3
+**************************************************     Sim=    9.500000     ETA= 215.7    WC= 720.5
+**************************************************     Sim=   10.000000     ETA= 210.2    WC= 731.0
+**************************************************     Sim=   10.500000     ETA= 204.4    WC= 741.8
+**************************************************     Sim=   11.000000     ETA= 197.8    WC= 752.8
+**************************************************     Sim=   11.500000     ETA= 190.4    WC= 764.0
+**************************************************     Sim=   12.000000     ETA= 182.8    WC= 775.4
+**************************************************     Sim=   12.500000     ETA= 174.6    WC= 787.1
+**************************************************     Sim=   13.000000     ETA= 165.8    WC= 798.9
+**************************************************     Sim=   13.500000     ETA= 156.7    WC= 810.9
+**************************************************     Sim=   14.000000     ETA= 146.9    WC= 823.2
+**************************************************     Sim=   14.500000     ETA= 138.2    WC= 835.8
+**************************************************     Sim=   15.000000     ETA= 126.0    WC= 848.4
+**************************************************     Sim=   15.500000     ETA= 114.3    WC= 861.0
+**************************************************     Sim=   16.000000     ETA= 102.7    WC= 873.9
+**************************************************     Sim=   16.500000     ETA=  90.5    WC= 886.8
+**************************************************     Sim=   17.000000     ETA=  78.2    WC= 899.9
+**************************************************     Sim=   17.500000     ETA=  65.6    WC= 913.0
+**************************************************     Sim=   18.000000     ETA=  52.8    WC= 926.2
+**************************************************     Sim=   18.500000     ETA=  40.0    WC= 939.5
+**************************************************     Sim=   19.000000     ETA=  26.8    WC= 952.9
+**************************************************     Sim=   19.500000     ETA=  13.5    WC= 966.4
+*************************************************
+
+ Critical delta t related information: 
+
+	 The minimum h/Vp = 0.158396 
+
+
+The minimal h	 = 781.250000
+
+
+
+
+Force generation:starts
+
+Total forces = 1 
+ I/O Force Intitialization ...0.01 s
+ Source files ...........done...2.71 s
+ Concatenation process...done...0.00 s
+
+ Process       M0   myNumOfForces     myCycles  myNumNodesLoaded  myMemAlloc
+    0      1.386238e+17   1             1        8            3.840000e+05
+  Filtered  Threshold frequency = 0.500000 Poles =6 
+
+   M0  =  1.386238e+17 Nm  
+ Mw = 5.364558
+ Total Memory Allocated = 3.840000e+05
+
+
+__________________________Raw Timers__________________________
+
+Timer: Total Wall Clock: 980.050435  
+Timer: Octor Newtree: 0.000010  
+Timer: Octor Refinetree: 283.668422  
+Timer: Octor Balancetree: 0.047809  
+Timer: Octor Partitiontree: 0.000014  
+Timer: Octor Extractmesh: 2.346698  
+Timer: Mesh correct properties: 258.570742  
+Timer: Mesh Stats Print: 0.000250  (Min 0.000250)   (Max 0.000250)   
+Timer: Solver Stats Print: 0.000268  (Min 0.000268)   (Max 0.000268)   
+Timer: Source Init: 2.719876  (Min 2.719876)   (Max 2.719876)   
+Timer: Solver: 418.849624  
+Timer: Solver I/O: 0.077430  (Min 0.077430)   (Max 0.077430)   (Avg 0.077430)   
+Timer: Print Stations: 0.018894  (Min 0.018894)   (Max 0.018894)   
+Timer: Solver drm output: 0.000398  (Min 0.000398)   (Max 0.000398)   (Avg 0.000398)   
+Timer: Read My Forces: 0.004369  (Min 0.004369)   (Max 0.004369)   (Avg 0.004369)   
+Timer: Solver drm read displacements: 0.000457  (Min 0.000457)   (Max 0.000457)   (Avg 0.000457)   
+Timer: Compute Physics: 410.309561  (Min 410.309561)   (Max 410.309561)   (Avg 410.309561)   
+Timer: Compute addforces s: 0.000619  (Min 0.000619)   (Max 0.000619)   (Avg 0.000619)   
+Timer: Solver drm force compute: 0.000468  (Min 0.000468)   (Max 0.000468)   (Avg 0.000468)   
+Timer: Compute addforces e: 384.607536  (Min 384.607536)   (Max 384.607536)   (Avg 384.607536)   
+Timer: Damping addforce: 0.000462  (Min 0.000462)   (Max 0.000462)   (Avg 0.000462)   
+Timer: Communication: 8.460916  (Min 8.460916)   (Max 8.460916)   (Avg 8.460916)   
+Timer: 1st schedule send data (contribution): 0.001122  (Min 0.001122)   (Max 0.001122)   (Avg 0.001122)   
+Timer: 1st compute adjust (distribution): 3.853858  (Min 3.853858)   (Max 3.853858)   (Avg 3.853858)   
+Timer: 2nd schedule send data (contribution): 0.000432  (Min 0.000432)   (Max 0.000432)   (Avg 0.000432)   
+Timer: Compute new displacement: 25.694852  (Min 25.694852)   (Max 25.694852)   (Avg 25.694852)   
+Timer: Load Fixedbase Disps: 0.000447  
+Timer: 3rd schedule send data (sharing): 0.001079  (Min 0.001079)   (Max 0.001079)   (Avg 0.001079)   
+Timer: 2nd compute adjust (assignment): 4.600532  (Min 4.600532)   (Max 4.600532)   (Avg 4.600532)   
+Timer: 4th schadule send data (sharing): 0.000532  (Min 0.000532)   (Max 0.000532)   (Avg 0.000532)   
+
+
+
+
+
+
+
+__________________________Timer Statistics__________________________
+
+
+_____________Summary_____________
+Max Frequency             : 0.10
+Vs                        : 1000.00
+Total elements            : 671434
+Elements/PE               : 671434
+Simulation duration       : 20.00 seconds
+Total steps               : 2000
+DeltaT used               : 0.010000 seconds
+Critical deltaT           : 0.158396 seconds
+
+Total Wall Clock          : 980.05 seconds
+Time/step                 : 0.209425 seconds
+Time/step/(elem/PE)       : 0.000312 millisec
+Simulation Rate Variation : 10.471 (Average)   7.191 (Min)   13.506 (Max)  (sec/50 timesteps)
+
+
+____________Breakdown____________
+TOTAL MESHING                       : 544.63 seconds
+    Octor Newtree                   : 0.00 seconds
+    Octor Refinetree                : 283.67 seconds
+    Octor Balancetree               : 0.05 seconds
+    Octor Partitiontree             : 0.00 seconds
+    Octor Extractmesh               : 2.35 seconds
+    Mesh correct properties         : 258.57 seconds
+    Mesh Stats Print                : 0.00 seconds
+
+SOURCE INITIALIZATION               : 2.72 (Max) 2.72 (Min) seconds
+
+TOTAL SOLVER                        : 418.85 seconds
+    Read My Forces                  : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    Compute addforces s             : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    Compute addforces e             : 384.61 (Average)   384.61 (Max) 384.61 (Min) seconds
+    Compute Damping addforce        : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    Solver drm force compute        : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    1st schedule send data          : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    1st compute adjust              : 3.85 (Average)   3.85 (Max) 3.85 (Min) seconds
+    2nd schedule send data          : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    Compute new displacement        : 25.69 (Average)   25.69 (Max) 25.69 (Min) seconds
+    3rd schedule send data          : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    2nd compute adjust              : 4.60 (Average)   4.60 (Max) 4.60 (Min) seconds
+    4th schadule send data          : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+    IO
+        Drm Output                  : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+        Solver drm read disp        : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+        Solver Stats Print          : 0.00 (Average)   0.00 (Max) 0.00 (Min) seconds
+        Stations                    : 0.00 (Average)   0.02 (Max) 0.02 (Min) seconds
+
+TOTAL WALL CLOCK                    : 980.05 seconds
+
+
+____________Analysis_____________
+Solver I/O                 : 0.08 (Average)   0.08 (Max) 0.08 (Min) seconds
+Solver Compute             : 410.31 (Average)   410.31 (Max) 410.31 (Min) seconds
+Solver Communicate         : 8.46 (Average)   8.46 (Max) 8.46 (Min) seconds
+Compute/Communicate Ratio  : 48.49 
+
+
+
+

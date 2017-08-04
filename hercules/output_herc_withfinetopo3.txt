@@ -1,0 +1,28 @@
+Starting psolve $Revision: 1.166 $ on 2 PEs (0 IO Pool PEs).
+
+
+
+---------------- Some Input Data ----------------
+
+Vs cut:                             1000.000000
+Softening factor:                   4.000000
+Number of stations:                 3
+Number of planes:                   1
+Stiffness calculation method:       effective
+Include buildings:                  no
+Include nonlinear analysis:         no
+Printing velocities on stations:    yes
+Printing accelerations on stations: yes
+Mesh Coordinates For Matlab:        no
+cvmdb_input_file:                   inputfiles/velocity.model/glab-small.e
+Implement drm:      	               no
+Include Topography:                 yes
+
+-------------------------------------------------
+
+This part is working fine 
+Loading global velocity submodel data.
+Loading NZ Tomography.
+Loading global velocity submodel data.
+Loading NZ Tomography.
+mpiexec-openmpi-mp: Forwarding signal 18 to job

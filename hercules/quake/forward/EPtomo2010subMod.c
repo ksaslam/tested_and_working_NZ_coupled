@@ -15,7 +15,7 @@
 #include "structs.h"
 #include "functions.h"
 
-void EPtomo2010subMod(int zInd, double dep, mesh_vector *MESH_VECTOR, qualities_vector *QUALITIES_VECTOR, nz_tomography_data *NZ_TOMOGRAPHY_DATA)
+void EPtomo2010subMod(int zInd, double dep, mesh_vector MESH_VECTOR, qualities_vector *QUALITIES_VECTOR, nz_tomography_data *NZ_TOMOGRAPHY_DATA)
 /*
  Purpose:   calculate the rho vp and vs values at a single lat long point for all the depths within this velocity submodel
  
@@ -57,7 +57,7 @@ void EPtomo2010subMod(int zInd, double dep, mesh_vector *MESH_VECTOR, qualities_
     double val;
     
     // find the adjscent points for interpolatin from the first surface (assume all surfaces utilise the same grid)
-    ADJACENT_POINTS = findGlobalAdjacentPoints(NZ_TOMOGRAPHY_DATA->surf[0][0], *MESH_VECTOR->Lat, *MESH_VECTOR->Lon);
+    ADJACENT_POINTS = findGlobalAdjacentPoints(NZ_TOMOGRAPHY_DATA->surf[0][0], *MESH_VECTOR.Lat, *MESH_VECTOR.Lon);
 
     for( int i = 0; i < 3; i++)
     {
@@ -88,8 +88,8 @@ void EPtomo2010subMod(int zInd, double dep, mesh_vector *MESH_VECTOR, qualities_
         Q12b = SURFACE_POINTER_BELOW->raster[ADJACENT_POINTS->lonInd[0]][ADJACENT_POINTS->latInd[1]];
         Q21b = SURFACE_POINTER_BELOW->raster[ADJACENT_POINTS->lonInd[1]][ADJACENT_POINTS->latInd[0]];
         Q22b = SURFACE_POINTER_BELOW->raster[ADJACENT_POINTS->lonInd[1]][ADJACENT_POINTS->latInd[1]];
-        X = *MESH_VECTOR->Lon;
-        Y = *MESH_VECTOR->Lat;
+        X = *MESH_VECTOR.Lon;
+        Y = *MESH_VECTOR.Lat;
         
         
         X1a = SURFACE_POINTER_ABOVE->loni[ADJACENT_POINTS->lonInd[0]];

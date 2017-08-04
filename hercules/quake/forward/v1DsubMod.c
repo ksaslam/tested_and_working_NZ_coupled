@@ -71,7 +71,6 @@ void load1dVeloSubModel(char *fileName, velo_mod_1d_data *VELO_MOD_1D_DATA)
         printf("Error 1D velocity model file %s not found.\n",fileName);
         exit(EXIT_FAILURE);
     }
-   
     
     char tempA[10], tempB[10];
     fscanf(file, "%s %s", tempA, tempB); // header line (discard)

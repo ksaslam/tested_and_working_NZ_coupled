@@ -1431,7 +1431,7 @@ setrec( octant_t* leaf, double ticksize, void* data )
             printf("Memory allocation of QUALITIES_VECTOR failed.\n");
             exit(EXIT_FAILURE);
         }
-       //fprintf(stderr, "The domain lat,long,depth %lf,%lf, %lf \n", Param.theSurfaceCornersLat[0], Param.theSurfaceCornersLat[1], Param.theSurfaceCornersLat[2]); 
+       //fprintf(stderr, "The domain lat,long,depth %lf,%lf,  \n", lat_point, lon_point); 
  
        main_function(lat_point, lon_point, depth_point, CALCULATION_LOG, VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, QUALITIES_VECTOR);
         
@@ -1442,10 +1442,10 @@ setrec( octant_t* leaf, double ticksize, void* data )
        g_props.Vp  = (float) 1000.0 * QUALITIES_VECTOR->Vp[0];
        g_props.Vs  = (float) 1000.0 * QUALITIES_VECTOR->Vs[0];
        g_props.rho = (float) 1000.0 * QUALITIES_VECTOR->Rho[0];
-       fprintf(stderr, "*");
+       //fprintf(stderr, "*");
        
 
-       free(QUALITIES_VECTOR);
+      free(QUALITIES_VECTOR);
 		if (res != 0) {
 		    continue;
 		}
@@ -7553,7 +7553,7 @@ mesh_correct_properties( etree_t* cvm )
                     g_props.Vp  = (float) 1000.0 * QUALITIES_VECTOR->Vp[0];
                     g_props.Vs  = (float) 1000.0 * QUALITIES_VECTOR->Vs[0];
                     g_props.rho = (float) 1000.0 * QUALITIES_VECTOR->Rho[0];
-                    fprintf(stderr, "lat long after conversion, %lf\n",g_props.Vp);
+                    //fprintf(stderr, "mesh correct after conversion, %lf\n",g_props.Vp);
                     
                     free(QUALITIES_VECTOR);                  
 
@@ -7951,6 +7951,17 @@ int main( int argc, char** argv )
     solver_printstat( Global.mySolver );
     Timer_Stop("Solver Stats Print");
     Timer_Reduce("Solver Stats Print", MAX | MIN, comm_solver);
+
+    free(VELO_MOD_1D_DATA);
+//    freeEPtomoSurfaceData(NZ_TOMOGRAPHY_DATA);
+    free(NZ_TOMOGRAPHY_DATA);
+    free(GLOBAL_SURFACES);
+//    freeGlobalSurfaceData(GLOBAL_SURFACES, GLOBAL_MODEL_PARAMETERS);
+//    freeAllBasinSurfaces(BASIN_DATA, GLOBAL_MODEL_PARAMETERS);
+    free(BASIN_DATA);
+    
+
+
 
     /* Initialize nonlinear solver analysis structures */
     if ( Param.includeNonlinearAnalysis == YES ) {

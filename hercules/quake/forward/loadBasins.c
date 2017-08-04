@@ -79,7 +79,7 @@ void loadBasinSubModelData(int basinNum, basin_data *BASIN_DATA, global_model_pa
     }
 }
 
-void interpolateBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *GLOBAL_MODEL_PARAMETERS, in_basin *IN_BASIN, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS, mesh_vector *MESH_VECTOR)
+void interpolateBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *GLOBAL_MODEL_PARAMETERS, in_basin *IN_BASIN, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS, mesh_vector MESH_VECTOR)
 /*
  Purpose: determine if a lat lon point is in a basin, if so interpolate the basin surface depths, enforce their hierarchy, then determine which depth points lie within the basin limits
  
@@ -94,12 +94,12 @@ void interpolateBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_paramete
  n.a.
  */
 {
-    determineIfWithinBasinLatLon(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, *MESH_VECTOR->Lat, *MESH_VECTOR->Lon);
-    determineBasinSurfaceDepths(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, PARTIAL_BASIN_SURFACE_DEPTHS, *MESH_VECTOR->Lat, *MESH_VECTOR->Lon);
+    determineIfWithinBasinLatLon(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, *MESH_VECTOR.Lat, *MESH_VECTOR.Lon);
+    determineBasinSurfaceDepths(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, PARTIAL_BASIN_SURFACE_DEPTHS, *MESH_VECTOR.Lat, *MESH_VECTOR.Lon);
     enforceBasinSurfaceDepths(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, PARTIAL_BASIN_SURFACE_DEPTHS, MESH_VECTOR);
 }
 
-void enforceBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *GLOBAL_MODEL_PARAMETERS, in_basin *IN_BASIN, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS, mesh_vector *MESH_VECTOR)
+void enforceBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *GLOBAL_MODEL_PARAMETERS, in_basin *IN_BASIN, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS, mesh_vector MESH_VECTOR)
 /*
  Purpose: enforce the hierarchy of interpolated basin surface depths
  
@@ -128,13 +128,13 @@ void enforceBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *
             topLim = PARTIAL_BASIN_SURFACE_DEPTHS->dep[i][0];
             botLim = PARTIAL_BASIN_SURFACE_DEPTHS->dep[i][GLOBAL_MODEL_PARAMETERS->nBasinSurfaces[i]-1];
             
-            for(int k  = 0; k < MESH_VECTOR->nZ; k++)
+            for(int k  = 0; k < MESH_VECTOR.nZ; k++)
             {
-                if(MESH_VECTOR->Z[k] > topLim)
+                if(MESH_VECTOR.Z[k] > topLim)
                 {
                     IN_BASIN->inBasinDep[i][k] = 0;
                 }
-                else if (MESH_VECTOR->Z[k] < botLim)
+                else if (MESH_VECTOR.Z[k] < botLim)
                 {
                     IN_BASIN->inBasinDep[i][k] = 0;
                 }
@@ -146,7 +146,7 @@ void enforceBasinSurfaceDepths(basin_data *BASIN_DATA, global_model_parameters *
         }
         else
         {
-            for(int k  = 0; k < MESH_VECTOR->nZ; k++)
+            for(int k  = 0; k < MESH_VECTOR.nZ; k++)
             {
                 IN_BASIN->inBasinDep[i][k] = 0;
             }

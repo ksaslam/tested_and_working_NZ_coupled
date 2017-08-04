@@ -175,15 +175,15 @@ ifeq ($(SYSTEM), MACBOOK)
 endif
  
 ifeq ($(SYSTEM), MAVERICKS)
-#	MPI_DIR      = /opt/local
-#	MPI_INCLUDE  = $(MPI_DIR)/include/openmpi/ompi/mpi/cxx
-	MPI_DIR= /usr/local/
-	CC      = $(MPI_DIR)/bin/mpicc
-	CXX     = $(MPI_DIR)/bin/mpicxx
-	LD      = $(MPI_DIR)/bin/mpicxx
-#	CC           = $(MPI_DIR)/bin/mpicc
-#	CXX          = $(MPI_DIR)/bin/mpicxx
-#	LD           = $(MPI_DIR)/bin/mpicxx
+	MPI_DIR      = /opt/local
+	MPI_INCLUDE  = /opt/local/include/openmpi-mp/openmpi/ompi/mpi/cxx
+#	MPI_DIR= /usr/local/
+	CC      = $(MPI_DIR)/bin/mpicc-openmpi-mp
+	CXX     = $(MPI_DIR)/bin/mpicxx-openmpi-mp
+	LD      = $(MPI_DIR)/bin/mpicxx-openmpi-mp
+#	CC           = $(MPI_DIR)/bin/mpicc-openmpi-mp
+#	CXX          = $(MPI_DIR)/bin/mpicxx-openmpi-mp
+#	LD           = $(MPI_DIR)/bin/mmpicxx-openmpi-mp
 	CXXFLAGS    += -DMPICH_IGNORE_CXX_SEEK
 	CFLAGS      += -Wall
 	CPPFLAGS    += -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64

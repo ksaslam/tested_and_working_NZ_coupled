@@ -26,9 +26,7 @@
 
 
 //void main_function(double x_lat,double y_long)
-//void main_function(double x_lat,double y_long, calculation_log *CALCULATION_LOG, velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA, global_surfaces *GLOBAL_SURFACES, basin_data *BASIN_DATA)
-void main_function(double x_lat,double y_long, double depth_point, calculation_log *CALCULATION_LOG, velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA, global_surfaces *GLOBAL_SURFACES, basin_data *BASIN_DATA, qualities_vector *QUALITIES_VECTOR)
-
+void main_function(double x_lat,double y_long, double depth, calculation_log *CALCULATION_LOG, velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA, global_surfaces *GLOBAL_SURFACES, basin_data *BASIN_DATA, qualities_vector *QUALITIES_VECTOR)
 {
 
 // ****************************************************************************
@@ -69,9 +67,9 @@ void main_function(double x_lat,double y_long, double depth_point, calculation_l
     char *OUTPUT_DIR;
     char *parametersTextFile = (char*) malloc(MAX_FILENAME_STRING_LEN*sizeof(char));
     char *inputFName;
-    double lat;
-    double lon; 
-    double depth;
+//    double lat;
+//    double lon; 
+//    double depth;
     // generate structs to house parameters for each call type
     gen_extract_velo_mod_call GEN_EXTRACT_VELO_MOD_CALL;
     gen_velo_slices_call GEN_VELO_SLICES_CALL;
@@ -105,10 +103,11 @@ void main_function(double x_lat,double y_long, double depth_point, calculation_l
         if (strcmp(CALL_TYPE, "GENERATE_VELOCITIES_ON_GRID") == 0)
         {
             GENERATE_VELOCITIES_ON_GRID = 1;
-            GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "BULLDOZED";
+//            GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "BULLDOZED";
+            GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.TOPO_TYPE = "SQUASHED";
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.MIN_VS = 0.500;
             GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL.COORDINATES_TEXT_FILE = "SecondaryInputFiles/GridpointCoords.txt";
-            fprintf(stderr, "Done with getting the file names of input file\n");
+            //fprintf(stderr, "Done with getting the file names of input file\n");
         }
 
 
@@ -145,27 +144,31 @@ void main_function(double x_lat,double y_long, double depth_point, calculation_l
     
      if (GENERATE_VELOCITIES_ON_GRID == 1)
     {   
+//
+//        for( int i = 0; i < 1000000; i++ )
+//
+//        {
+            //printf("Running load data from main.\n");
+            // lat= -42.0962;
+            // lon= 172.763972;
+            // depth= -2000.0;
+//            lat= -43.775125;
+//            lon= 172.224875;
+            //depth= -4975.000;
 
+            
+            // runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, lat,lon, depth);
+            // printf("Done with the first one.\n");
+            // lat=  -43.00;
+            // lon=  172.00;
+            // depth= -2000.0;        
+            // runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, lat, lon, depth);
+            // lat= -43.50;
+            // lon= 173.00;
+            // depth= -1000.0;
         
-        // lat= -42.0962;
-        // lon= 172.763972;
-        // depth= -2000.0;
-        // lat= -43.775125;
-        // lon= 172.224875;
-        // depth= -4975.000000;
-
-        convert_program (100.0,200.0);
-        // runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, lat,lon, depth);
-        // printf("Done with the first one.\n");
-        // lat=  -43.00;
-        // lon=  172.00;
-        // depth= -2000.0;        
-        // runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, lat, lon, depth);
-        // lat= -43.50;
-        // lon= 173.00;
-        // depth= -1000.0;         
-        runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, x_lat, y_long, depth_point, QUALITIES_VECTOR);
-        }    
+            runGenerateMultipleVSonGrid(GLOBAL_MODEL_PARAMETERS , VELO_MOD_1D_DATA, NZ_TOMOGRAPHY_DATA, GLOBAL_SURFACES, BASIN_DATA, OUTPUT_DIR, GEN_EXTRACT_MULTI_GRIDPOINT_VS_CALL, CALCULATION_LOG, x_lat, y_long, depth, QUALITIES_VECTOR);
+//        }    
         // printf("==========================================\n");
         // printf("Running GENERATE_VELOCITIES_ON_GRID.\n");
         // printf("==========================================\n");
@@ -173,9 +176,9 @@ void main_function(double x_lat,double y_long, double depth_point, calculation_l
         // printf("==========================================\n");
         // printf("Completed running GENERATE_VELOCITIES_ON_GRID.\n");
         // printf("==========================================\n");
-    
+    }
 
-
+    free(GLOBAL_MODEL_PARAMETERS);
 
 
 

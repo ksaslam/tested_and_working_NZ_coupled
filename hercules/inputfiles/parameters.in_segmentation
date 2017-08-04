@@ -109,9 +109,9 @@ region_origin_latitude_deg     =   -43.80
 region_origin_longitude_deg    = 172.20
 region_depth_shallow_m         =    0.00000000
 
-region_length_east_m           = 30000.0
-region_length_north_m          = 30000.0
-region_depth_deep_m            =  15000.0
+region_length_east_m           = 200000.0
+region_length_north_m          = 200000.0
+region_depth_deep_m            = 100000.0
 
 # ----------------------------------------------------------------------------
 

@@ -1433,7 +1433,7 @@ global_model_parameters *getGlobalModelParameters(char *modelVersion)
         assert(GLOBAL_MODEL_PARAMETERS->nBasinSurfaces[i]<=(MAX_NUM_BASIN_SURFACES));
         assert(GLOBAL_MODEL_PARAMETERS->nBasinBoundaries[i] <=(MAX_NUM_BASIN_BOUNDARIES)) ;
     }
-    // printf("Global Model Parameters Obtained.\n");
+    //printf("Global Model Parameters Obtained.\n");
     return GLOBAL_MODEL_PARAMETERS;
     
 }

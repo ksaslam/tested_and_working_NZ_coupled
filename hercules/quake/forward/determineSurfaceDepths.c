@@ -16,7 +16,7 @@
 #include "functions.h"
 
 
-void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vector *MESH_VECTOR ,partial_global_surface_depths *PARTIAL_GLOBAL_SURFACE_DEPTHS, calculation_log *CALCULATION_LOG)
+void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vector MESH_VECTOR ,partial_global_surface_depths *PARTIAL_GLOBAL_SURFACE_DEPTHS, calculation_log *CALCULATION_LOG)
 /*
  Purpose: interpolate the surface depths at the lat lon location given in MESH_VECTOR
  
@@ -39,7 +39,7 @@ void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vecto
     for(int i = 0; i < GLOBAL_SURFACES->nSurf; i++)
     {
         GLOBAL_SURF_READ = GLOBAL_SURFACES->surf[i];
-        ADJACENT_POINTS = findGlobalAdjacentPoints(GLOBAL_SURF_READ, *MESH_VECTOR->Lat, *MESH_VECTOR->Lon);
+        ADJACENT_POINTS = findGlobalAdjacentPoints(GLOBAL_SURF_READ, *MESH_VECTOR.Lat, *MESH_VECTOR.Lon);
         
         // if point lies within the surface bounds, interpolate as normal
         if (ADJACENT_POINTS->inSurfaceBounds == 1)
@@ -53,8 +53,8 @@ void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vecto
             Q12 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonInd[0]][ADJACENT_POINTS->latInd[1]];
             Q21 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonInd[1]][ADJACENT_POINTS->latInd[0]];
             Q22 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonInd[1]][ADJACENT_POINTS->latInd[1]];
-            X = *MESH_VECTOR->Lon;
-            Y = *MESH_VECTOR->Lat;
+            X = *MESH_VECTOR.Lon;
+            Y = *MESH_VECTOR.Lat;
             PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[i] =  biLinearInterpolation(X1, X2, Y1, Y2, Q11, Q12, Q21, Q22, X, Y);
             
         }
@@ -66,7 +66,7 @@ void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vecto
             p2 = GLOBAL_SURF_READ->loni[ADJACENT_POINTS->lonInd[1]];
             v1 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonInd[0]][ADJACENT_POINTS->latEdgeInd];
             v2 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonInd[1]][ADJACENT_POINTS->latEdgeInd];
-            p3 = *MESH_VECTOR->Lon;
+            p3 = *MESH_VECTOR.Lon;
             PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[i] = linearInterpolation(p1, p2, v1, v2, p3);
             CALCULATION_LOG->nPointsInGlobalLatSurfaceExtensionZone += 1;
         }
@@ -76,7 +76,7 @@ void interpolateGlobalSurfaceDepths(global_surfaces *GLOBAL_SURFACES, mesh_vecto
             p2 = GLOBAL_SURF_READ->lati[ADJACENT_POINTS->latInd[1]];
             v1 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonEdgeInd][ADJACENT_POINTS->latInd[0]];
             v2 = GLOBAL_SURF_READ->raster[ADJACENT_POINTS->lonEdgeInd][ADJACENT_POINTS->latInd[1]];
-            p3 = *MESH_VECTOR->Lat;
+            p3 = *MESH_VECTOR.Lat;
             PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[i] = linearInterpolation(p1, p2, v1, v2, p3);
             CALCULATION_LOG->nPointsInGlobalLonSurfaceExtensionZone += 1;
         }

@@ -17,7 +17,7 @@
 #include "functions.h"
 
 
-void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA, global_surfaces *GLOBAL_SURFACES, basin_data *BASIN_DATA, mesh_vector *MESH_VECTOR,partial_global_surface_depths *PARTIAL_GLOBAL_SURFACE_DEPTHS, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS,in_basin *IN_BASIN, qualities_vector *QUALITIES_VECTOR, calculation_log *CALCULATION_LOG, char *TOPO_TYPE)
+void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_1d_data *VELO_MOD_1D_DATA, nz_tomography_data *NZ_TOMOGRAPHY_DATA, global_surfaces *GLOBAL_SURFACES, basin_data *BASIN_DATA, mesh_vector MESH_VECTOR,partial_global_surface_depths *PARTIAL_GLOBAL_SURFACE_DEPTHS, partial_basin_surface_depths *PARTIAL_BASIN_SURFACE_DEPTHS,in_basin *IN_BASIN, qualities_vector *QUALITIES_VECTOR, calculation_log *CALCULATION_LOG, char *TOPO_TYPE)
 /*
  Purpose:  to assign Vp Vs and Rho to a vector of depth points at a signle Lat Lon location
 
@@ -34,33 +34,33 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
  *QUALITIES_VECTOR - struct housing Vp Vs and Rho for one Lat Lon value and one or more depths
  */
 {
-
+//    printf("%lf %lf .\n", MESH_VECTOR.Z[0], MESH_VECTOR.Z[1]);
     int nVeloModInd;
     interpolateGlobalSurfaceDepths(GLOBAL_SURFACES, MESH_VECTOR, PARTIAL_GLOBAL_SURFACE_DEPTHS, CALCULATION_LOG);
     double dZ;
     double depthChange;
 
-    mesh_vector *SHIFTED_MESH_VECTOR = NULL;
+    mesh_vector SHIFTED_MESH_VECTOR ;
 
     if(strcmp(TOPO_TYPE, "SQUASHED") == 0)
-    {
-        dZ = (MESH_VECTOR->Z[0] -  MESH_VECTOR->Z[1]);
+     {
+        dZ = (MESH_VECTOR.Z[0] -  MESH_VECTOR.Z[1]);
 
-        SHIFTED_MESH_VECTOR = malloc(sizeof(mesh_vector));
+    //     SHIFTED_MESH_VECTOR = malloc(sizeof(mesh_vector));
 
-        if (SHIFTED_MESH_VECTOR == NULL)
+    //     if (SHIFTED_MESH_VECTOR == NULL)
+    //     {
+    //         printf("Memory allocation of SHIFTED_MESH_VECTOR failed.\n");
+    //         exit(EXIT_FAILURE);
+    //     }
+        SHIFTED_MESH_VECTOR.Lat = MESH_VECTOR.Lat;
+        SHIFTED_MESH_VECTOR.Lon = MESH_VECTOR.Lon;
+        SHIFTED_MESH_VECTOR.nZ = MESH_VECTOR.nZ;
+
+        for (int k = 0; k < MESH_VECTOR.nZ; k++)
         {
-            printf("Memory allocation of SHIFTED_MESH_VECTOR failed.\n");
-            exit(EXIT_FAILURE);
-        }
-        SHIFTED_MESH_VECTOR->Lat = MESH_VECTOR->Lat;
-        SHIFTED_MESH_VECTOR->Lon = MESH_VECTOR->Lon;
-        SHIFTED_MESH_VECTOR->nZ = MESH_VECTOR->nZ;
-
-        for (int k = 0; k < MESH_VECTOR->nZ; k++)
-        {
-            depthChange = - MESH_VECTOR->Z[k];
-            SHIFTED_MESH_VECTOR->Z[k] = PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[1] - depthChange;
+            depthChange = - MESH_VECTOR.Z[k];
+            SHIFTED_MESH_VECTOR.Z[k] = PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[1] - depthChange;
 //            printf("%lf %lf %lf.\n",depthChange,SHIFTED_MESH_VECTOR->Z[k],MESH_VECTOR->Z[k]);
         }
         interpolateBasinSurfaceDepths(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, PARTIAL_BASIN_SURFACE_DEPTHS, SHIFTED_MESH_VECTOR);
@@ -68,24 +68,24 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
     }
     else if(strcmp(TOPO_TYPE, "SQUASHED_TAPERED") == 0)
     {
-        dZ = (MESH_VECTOR->Z[0] -  MESH_VECTOR->Z[1]);
+        dZ = (MESH_VECTOR.Z[0] -  MESH_VECTOR.Z[1]);
         //printf("%lf %lf %lf.\n",MESH_VECTOR->Z[0], MESH_VECTOR->Z[1],dZ);
         double TAPER_DIST = 1.0; //1.0 times the value of the DEM
         double TAPER_VAL;
 
-        SHIFTED_MESH_VECTOR = malloc(sizeof(mesh_vector));
+        // SHIFTED_MESH_VECTOR = malloc(sizeof(mesh_vector));
 
-        if (SHIFTED_MESH_VECTOR == NULL)
+        // if (SHIFTED_MESH_VECTOR == NULL)
+        // {
+        //     printf("Memory allocation of SHIFTED_MESH_VECTOR failed.\n");
+        //     exit(EXIT_FAILURE);
+        //}
+        SHIFTED_MESH_VECTOR.Lat = MESH_VECTOR.Lat;
+        SHIFTED_MESH_VECTOR.Lon = MESH_VECTOR.Lon;
+        SHIFTED_MESH_VECTOR.nZ = MESH_VECTOR.nZ;
+        for (int k = 0; k < MESH_VECTOR.nZ; k++)
         {
-            printf("Memory allocation of SHIFTED_MESH_VECTOR failed.\n");
-            exit(EXIT_FAILURE);
-        }
-        SHIFTED_MESH_VECTOR->Lat = MESH_VECTOR->Lat;
-        SHIFTED_MESH_VECTOR->Lon = MESH_VECTOR->Lon;
-        SHIFTED_MESH_VECTOR->nZ = MESH_VECTOR->nZ;
-        for (int k = 0; k < MESH_VECTOR->nZ; k++)
-        {
-            depthChange = - MESH_VECTOR->Z[k];
+            depthChange = - MESH_VECTOR.Z[k];
             if(depthChange == 0)
             {
                 TAPER_VAL = 1.0;
@@ -98,7 +98,7 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
                     TAPER_VAL = 0;
                 }
             }
-            SHIFTED_MESH_VECTOR->Z[k] = PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[1]*TAPER_VAL - depthChange;
+            SHIFTED_MESH_VECTOR.Z[k] = PARTIAL_GLOBAL_SURFACE_DEPTHS->dep[1]*TAPER_VAL - depthChange;
         }
         interpolateBasinSurfaceDepths(BASIN_DATA, GLOBAL_MODEL_PARAMETERS, IN_BASIN, PARTIAL_BASIN_SURFACE_DEPTHS, SHIFTED_MESH_VECTOR);
     }
@@ -117,25 +117,24 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
     int basinFlag = 0;
     double Z = 0;
 
-    for (int k = 0; k < MESH_VECTOR->nZ; k++)
+    for (int k = 0; k < MESH_VECTOR.nZ; k++)
     {
-    //int k=0;
-    
         if(strcmp(TOPO_TYPE, "BULLDOZED") == 0)
         {
-            Z = MESH_VECTOR->Z[k];
+            Z = MESH_VECTOR.Z[k];
+  //          printf("The value of depth coming from assign %lf .\n",Z);
         }
         else if(strcmp(TOPO_TYPE, "TRUE") == 0)
         {
-            Z = MESH_VECTOR->Z[k];
+            Z = MESH_VECTOR.Z[k];
         }
         else if(strcmp(TOPO_TYPE, "SQUASHED") == 0)
         {
-            Z = SHIFTED_MESH_VECTOR->Z[k];
+            Z = SHIFTED_MESH_VECTOR.Z[k];
         }
         else if(strcmp(TOPO_TYPE, "SQUASHED_TAPERED") == 0)
         {
-            Z = SHIFTED_MESH_VECTOR->Z[k];
+            Z = SHIFTED_MESH_VECTOR.Z[k];
         }
 
         for(int i = 0; i < GLOBAL_MODEL_PARAMETERS->nBasins; i++)
@@ -150,7 +149,6 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
 
         if (basinFlag == 0)
         {
-            
             // determine which sub velocity model the point lies within
             nVeloModInd = findGlobalSubVeloModelInd(Z, PARTIAL_GLOBAL_SURFACE_DEPTHS);
 
@@ -187,19 +185,19 @@ void assignQualities(global_model_parameters *GLOBAL_MODEL_PARAMETERS, velo_mod_
         }
         basinFlag = 0;
 
-     }
+    }
     if(strcmp(TOPO_TYPE, "BULLDOZED") == 0)
     {
-        for (int k = 0; k < MESH_VECTOR->nZ; k++) // write over values if BULLDOZED
+        for (int k = 0; k < MESH_VECTOR.nZ; k++) // write over values if BULLDOZED
         {
-            if (MESH_VECTOR->Z[k] > 0)
+            if (MESH_VECTOR.Z[k] > 0)
             {
                 NaNsubMod(k, QUALITIES_VECTOR);
             }
         }
     }
 
-    free(SHIFTED_MESH_VECTOR);
+    //free(SHIFTED_MESH_VECTOR);
 }
 
 

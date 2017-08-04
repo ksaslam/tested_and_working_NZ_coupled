@@ -1,0 +1,64 @@
+Starting psolve $Revision: 1.166 $ on 1 PEs (0 IO Pool PEs).
+
+
+
+---------------- Some Input Data ----------------
+
+Vs cut:                             1000.000000
+Softening factor:                   4.000000
+Number of stations:                 30
+Number of planes:                   1
+Stiffness calculation method:       effective
+Include buildings:                  no
+Include nonlinear analysis:         no
+Printing velocities on stations:    yes
+Printing accelerations on stations: yes
+Mesh Coordinates For Matlab:        no
+cvmdb_input_file:                   inputfiles/velocity.model/glab-small.e
+Implement drm:      	               no
+Include Topography:                 yes
+
+-------------------------------------------------
+
+This part is working fine 
+Loading global velocity submodel data.
+Loading NZ Tomography.
+Loaded tomography data.
+Completed loading of global velocity submodel data.
+Completed loading of global surfaces.
+Loading basin data.
+All basin surfaces loaded.
+All basin boundaries loaded.
+All basin sub model data loaded.
+Completed loading basin data.
+All global data loaded.
+Meshing: Conventional
+
+Stage                Min         Max       Total    Time(s)
+
+New tree                                               0.00
+
+Refining         1497010     1497010     1497010     212.37
+Balancing        1563111     1563111     1563111      16.09
+Partitioning     1563111     1563111     1563111       0.00
+
+Extracting the mesh                                    0.00
+Correcting mesh properties                        Coming from mesh correct properties, 
+   360.47
+
+Total elements:                          1563111
+Total nodes:                             1848113
+Total dangling nodes:                     502107
+
+Maximum leaf level = 9
+Minimum leaf level = 5
+Topography station error: Unable to locate tetrahedron for station: x=110000.000000, y=-0.000000, z=464.419900
+in octant xo=109921.875000, yo=0.000000, zo=234.375000, esize=234.375000
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD 
+with errorcode -100.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
